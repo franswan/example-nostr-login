@@ -53,7 +53,7 @@ export default function ShowSession() {
                             </div>
                         </label>
                         <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                            <p className='whitespace-nowrap overflow-hidden overflow-ellipsis'>{session?.user?.name}</p>
+                            {/* <p className='whitespace-nowrap overflow-hidden overflow-ellipsis'>{session?.user?.name}</p> */}
                             <li>
                                 <a onClick={() => signOut({ callbackUrl: "/" })} className="cursor-pointer">
                                     sign out
