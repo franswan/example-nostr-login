@@ -10,12 +10,18 @@ export default function ClientStatus(props: React.PropsWithChildren<{
     const { data: session, status } = useSession();
 
     return (
-        <div>
-            <p>hello from client</p>
-            <p>{session && "status: logged in"}</p>
-            <p>{!session && "status: logged out"}</p>
-            <p>example passing props: {props.info_from_server}</p>
-            <p>click to test: </p><a href="/api/protected?helloParam=hello from client">API route with protected session</a>
+
+        <div className="grid h-screen place-items-center">
+            <div className="card card-bordered w-full">
+                <div className="card-body">
+                    <h2 className="card-title">{session?.user?.name}</h2>
+
+                    <p>{session && "Status: Logged in. See you at 8:30!"}</p>
+                    <p>{!session && "Status: Logged out"}</p>
+                    <p>Example passing props: {props.info_from_server}</p>
+                    <a className='btn btn-outline' href="/api/protected?helloParam=hello from client">API route with protected session</a>
+                </div>
+            </div>
         </div>
     )
 }

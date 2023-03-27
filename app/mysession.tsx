@@ -2,6 +2,7 @@
 import { useSession } from 'next-auth/react'
 import { signIn, signOut } from "next-auth/react"
 import Image from 'next/image';
+import SwitchTheme from './api/hello/components/SwitchTheme';
 
 const doNip07Login = async () => {
     //const pubKey = await (window as any).nostr.getPublicKey();
@@ -27,35 +28,45 @@ const doNip07Login = async () => {
 
 export default function ShowSession() {
     const { data: session, status } = useSession();
-    if (!session) {
-        return (
-            <>
-                <div>
+
+    return (
+        <div className="navbar bg-base-100">
+            <div className="flex-1">
+                <a className="btn btn-ghost normal-case text-xl">nostr-next-auth</a>
+            </div>
+
+            <div className="flex-none">
+                {!session ? (
                     <button
                         onClick={doNip07Login}
+                        className="btn btn-ghost ml-2"
                     >
-                        <span>nip07</span>
+                        <span className="mr-2">nip-07</span>
                         <Image src="nostr_logo_prpl_wht_rnd.svg" alt="nip07" width={30} height={30} />
-                        sign in
+                        <span className="ml-2">Sign In</span>
+                    </button>
+                ) : (
+                    <div className="dropdown dropdown-end">
+                        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                            <div className="w-10 rounded-full">
+                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" />
+                            </div>
+                        </label>
+                        <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                            <p className='whitespace-nowrap overflow-hidden overflow-ellipsis'>{session?.user?.name}</p>
+                            <li>
+                                <a onClick={() => signOut({ callbackUrl: "/" })} className="cursor-pointer">
+                                    sign out
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                )}
+            </div>
 
-                    </button>
-                </div>
-            </>
-        )
-    } else if (session?.user) {
-        return (
-            <>
-                <div>Welcome {session.user.name}
-                    <button
-                        onClick={() => signOut({ callbackUrl: "/" })}
-                        type="button"
-                    >
-                        sign out
-                    </button>
-                </div>
-            </>
-        )
-    } else {
-        return (<> </>)
-    }
+            <SwitchTheme />
+
+
+        </div>
+    );
 }

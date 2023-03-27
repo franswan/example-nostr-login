@@ -17,7 +17,7 @@ export default async function ServerStatus(searchParams: Record<string, string>)
 
     return (
         <div>
-            <p>{useHello}</p>
+            {/* <p>{useHello}</p> */}
             <ClientStatus info_from_server="here is a prop" />
         </div>
     )
