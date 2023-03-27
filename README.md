@@ -4,14 +4,16 @@ An example login supporting NIP07 with nextjs 13 appDir and next-auth.
 
 # the stack
 
-* nextjs
-* appDir
-* next-auth
-* jwt
-* nostr
-* NIP07 https://github.com/nostr-protocol/nips/blob/master/07.md
+- nextjs
+- appDir
+- next-auth
+- jwt
+- nostr
+- NIP07 https://github.com/nostr-protocol/nips/blob/master/07.md
+- Tailwind / DasiyUI
 
 # running the example
+
 ```
 npm install
 npm run dev
@@ -20,6 +22,7 @@ npm run dev
 # details
 
 This project uses the following dependencies:
+
 ```
 npm i next-auth --save
 npm i nostr-tools --save
